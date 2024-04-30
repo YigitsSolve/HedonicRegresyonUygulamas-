@@ -1,6 +1,6 @@
 Ev Fiyatı Analizi ve Lineer Regresyon Modeli
 
-Bu depo, ev fiyatları veri seti üzerinde yapılan analiz ve lineer regresyon modelini içerir. R programlama dili kullanılarak yapılmıştır.
+Ev fiyatları veri seti üzerinde yapılan analiz ve lineer regresyon modelini içerir. R programlama dili kullanılarak yapılmıştır.
 
 Veri Seti
 
