@@ -11,7 +11,7 @@ str(housePrice)
 summary(housePrice)
 
 
-# Her sütundaki eksik değer sayısını hesaplayın
+# Her sütundaki eksik değer sayısını hesapla
 missing_values <- colSums(is.na(housePrice))
 
 print(missing_values)
@@ -21,7 +21,7 @@ library(dplyr)
 housePrice <- housePrice %>%
   select(-Address, -`Price(USD)`)
 
-# Her sütundaki eksik değer sayısını hesaplayın
+# Her sütundaki eksik değer sayısını hesapla
 missing_values <- colSums(is.na(housePrice))
 
 print(missing_values)
@@ -29,27 +29,27 @@ print(missing_values)
 # Veri yapısı
 str(housePrice)
 
-# Parking dummy değişkeni oluşturma
+# Parking dummy değişkeni oluştur
 housePrice$Parking_dummy <- ifelse(housePrice$Parking == TRUE, 1, 0)
 
-# Warehouse dummy değişkeni oluşturma
+# Warehouse dummy değişkeni oluştur
 housePrice$Warehouse_dummy <- ifelse(housePrice$Warehouse == TRUE, 1, 0)
 
-# Elevator dummy değişkeni oluşturma
+# Elevator dummy değişkeni oluştur
 housePrice$Elevator_dummy <- ifelse(housePrice$Elevator == TRUE, 1, 0)
 
 new_df <- housePrice %>%
   select(Area, Room, Price, Parking_dummy, Warehouse_dummy, Elevator_dummy)
 
-# Lineer regresyon modeli oluşturma
+# Lineer regresyon modeli oluştur
 model <- lm(Price ~ Area + Room + Parking_dummy + Warehouse_dummy + Elevator_dummy, data = new_df)
 
-# Room dummy değişkenlerini oluşturma
+# Room dummy değişkenlerini oluştur
 for (i in 0:5) {
   new_df[paste0("Room_", i)] <- ifelse(new_df$Room == i, 1, 0)
 }
 
-# Modeli güncelleme
+# Modeli güncelle
 model <- lm(Price ~ Area + Room_1 + Room_2 + Room_3 + Room_4 + Room_5 +
               Parking_dummy + Warehouse_dummy + Elevator_dummy, data = new_df)
 
@@ -61,7 +61,7 @@ library(tidyr)
 # Veri setinizdeki tüm değişkenlerin adlarını alın
 vars <- names(housePrice)
 
-# Veri setinizdeki tüm değişkenlerin dağılım grafiğini tek bir grafik içinde çizin
+# Veri setindeki tüm değişkenlerin dağılım grafiğini tek bir grafik içinde çiz
 plots <- lapply(vars, function(var) {
   ggplot(housePrice, aes_string(x = var)) +
     geom_bar(fill = "skyblue", color = "black") +
@@ -71,7 +71,7 @@ plots <- lapply(vars, function(var) {
     theme_minimal()
 })
 
-# Grafiği tek bir çerçevede düzenleme
+# Grafiği tek bir çerçevede düzenle
 multiplot <- do.call(gridExtra::grid.arrange, c(plots, ncol = 3))
 
 
